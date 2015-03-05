@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SimonSays" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrU-8n-dzm" customClass="SimonColorButton" customModule="SimonSays" customModuleProvider="target">
+                                <rect key="frame" x="16" y="200" width="200" height="200"/>
+                                <state key="normal" image="Green_button">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0057208147370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t66-18-Eo1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bi-Op-1Lg" customClass="SimonColorButton" customModule="SimonSays" customModuleProvider="target">
+                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0HD-E3-N9H"/>
+                                    <constraint firstAttribute="width" constant="100" id="JwH-zt-poN"/>
+                                </constraints>
+                                <state key="normal" image="White_button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zUM-ZF-e03"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LqV-BO-Ps8" customClass="SimonColorButton" customModule="SimonSays" customModuleProvider="target">
+                                <rect key="frame" x="200" y="384" width="200" height="200"/>
+                                <state key="normal" image="Yellow_button">
+                                    <color key="titleColor" red="1" green="0.67133132809999996" blue="0.051554180450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="anX-Nc-CBc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssK-yI-tJZ" customClass="SimonColorButton" customModule="SimonSays" customModuleProvider="target">
+                                <rect key="frame" x="217" y="50" width="166" height="166"/>
+                                <state key="normal" image="Red_button">
+                                    <color key="titleColor" red="1" green="0.2630125552" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04G-92-m4L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUg-br-PCh" customClass="SimonColorButton" customModule="SimonSays" customModuleProvider="target">
+                                <rect key="frame" x="384" y="200" width="200" height="200"/>
+                                <state key="normal" image="Blue_button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="05y-Kf-yL7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rrU-8n-dzm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1lo-Sf-2EF"/>
+                            <constraint firstAttribute="centerY" secondItem="rrU-8n-dzm" secondAttribute="centerY" id="7A1-E2-hla"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eUg-br-PCh" secondAttribute="trailing" id="Ej5-H1-YlT"/>
+                            <constraint firstAttribute="centerX" secondItem="LqV-BO-Ps8" secondAttribute="centerX" id="UCK-Zi-eN4"/>
+                            <constraint firstAttribute="centerY" secondItem="eUg-br-PCh" secondAttribute="centerY" id="Zi7-mn-rOu"/>
+                            <constraint firstItem="eUg-br-PCh" firstAttribute="leading" secondItem="0Bi-Op-1Lg" secondAttribute="trailing" constant="34" id="gtN-ua-3yh"/>
+                            <constraint firstItem="0Bi-Op-1Lg" firstAttribute="top" secondItem="ssK-yI-tJZ" secondAttribute="bottom" constant="34" id="knW-N6-66G"/>
+                            <constraint firstAttribute="centerX" secondItem="0Bi-Op-1Lg" secondAttribute="centerX" id="sQX-Ec-vLr"/>
+                            <constraint firstAttribute="centerY" secondItem="0Bi-Op-1Lg" secondAttribute="centerY" id="sbK-2v-XdJ"/>
+                            <constraint firstItem="0Bi-Op-1Lg" firstAttribute="leading" secondItem="rrU-8n-dzm" secondAttribute="trailing" constant="34" id="tGv-1w-fz9"/>
+                            <constraint firstItem="LqV-BO-Ps8" firstAttribute="top" secondItem="0Bi-Op-1Lg" secondAttribute="bottom" constant="34" id="unI-aq-aBh"/>
+                            <constraint firstAttribute="centerX" secondItem="ssK-yI-tJZ" secondAttribute="centerX" id="z3a-bm-tNg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blueButton" destination="eUg-br-PCh" id="Kjt-sF-XTo"/>
+                        <outlet property="greenButton" destination="rrU-8n-dzm" id="cBN-NQ-sUm"/>
+                        <outlet property="redButton" destination="ssK-yI-tJZ" id="88T-8t-bQF"/>
+                        <outlet property="whiteButton" destination="0Bi-Op-1Lg" id="RvC-co-yAN"/>
+                        <outlet property="yellowButton" destination="LqV-BO-Ps8" id="ksU-pZ-OFk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Blue_button" width="200" height="200"/>
+        <image name="Green_button" width="200" height="200"/>
+        <image name="Red_button" width="166" height="166"/>
+        <image name="White_button" width="100" height="100"/>
+        <image name="Yellow_button" width="200" height="200"/>
+    </resources>
+</document>
