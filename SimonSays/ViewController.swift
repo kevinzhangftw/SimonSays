@@ -61,9 +61,11 @@ class ViewController: UIViewController {
         yellowButton.alpha = 1
         whiteButton.alpha = 0.5
         
-        //Register controls
-        
         //TODO: when users done entering controls, trigger either leading or ready
+   
+        //if sender is identidcal to red button  then it is redd button
+        if sender === redButton {
+            simonState = .Leading}
         //if user enter correct controls
         //then, continus to leading
         //if user enter wrong controls
@@ -102,9 +104,6 @@ class ViewController: UIViewController {
         blueButton.enabled = true
         greenButton.enabled = true
         yellowButton.enabled = true
-   
-        //generate new simon sequence
-        simonSquence = [.Red]
     }
     
     
