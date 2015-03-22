@@ -9,119 +9,153 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+  @IBOutlet weak var redButton: SimonColorButton!
+  @IBOutlet weak var greenButton: SimonColorButton!
+  @IBOutlet weak var yellowButton: SimonColorButton!
+  @IBOutlet weak var blueButton: SimonColorButton!
+  @IBOutlet weak var whiteButton: SimonColorButton!
+  
+  @IBOutlet weak var gameLevel: UILabel!
+  @IBOutlet weak var gameOver: UILabel!
+  
+  enum SimonState {
+    case Ready
+    case Leading
+    case Following
+  }
+  
+  var simonState: SimonState = .Ready{
+    didSet{
+      switch (oldValue, simonState) {
+      case (.Ready, .Leading) :
+        startRound()
+      case (.Leading, .Following) :
+        openToUserInput()
+      case (.Following, .Following) :
+        openToUserInput()
+      case (.Following, .Leading) :
+        advanceToNextLevel()
+      case (.Following, .Ready) :
+        gameRestarts()
+      case (.Ready, .Following) :
+        println("debugging state change!!!")
+      default:
+        assert(false, "Uh oh, we're not supposed be here!!!")
+      }
+    }
+  }
+  
+  
+  
+  override func viewDidLoad() {
+    realStart()
+//    mockStart()
+    
+  }
+  
+  var buttonArray: [SimonColorButton] = []
+  func realStart() {
+    self.addButtonsToTheButtonArray()
+  }
+  
+  func mockStart() {
+    //simonState = .Leading
+    showSequence.append(self.blueButton)
+    showSequence.append(self.redButton)
+    showSequence.append(self.yellowButton)
+    showSequence.append(self.greenButton)
+    animateUntilEndOfShowSequence()
+  }
+  
+  var senderArray: [SimonColorButton] = []
+  @IBAction func controlsTapped(sender: SimonColorButton) {
+    
+    senderArray.append(sender)
 
-    @IBOutlet weak var redButton: SimonColorButton!
-    @IBOutlet weak var greenButton: SimonColorButton!
-    @IBOutlet weak var yellowButton: SimonColorButton!
-    @IBOutlet weak var blueButton: SimonColorButton!
-    @IBOutlet weak var whiteButton: SimonColorButton!
-    
-    enum SimonState {
-        case Ready
-        case Leading
-        case Following
+    if senderArray.count == showSequence.count{
+      controlsTappedEvaluation()
+      senderArray = []
     }
     
-    var simonState: SimonState = .Ready{
-        didSet{
-            switch (oldValue, simonState) {
-            case (.Ready, .Leading) :
-                startRound()
-            case (.Leading, .Following) :
-                openToUserInput()
-            case (.Following, .Leading) :
-                advanceToNextLevel()
-            case (.Following, .Ready) :
-                gameRestarts()
-            default:
-                assert(false, "Uh oh, we're not supposed be here!!!")
-            }
-        }
+  }
+  
+  func controlsTappedEvaluation(){
+    if senderArray == showSequence {
+      advanceToNextLevel()
+    } else {
+        gameRestarts()
     }
+  }
 
-    enum ControlColors: Int {
-        case Red = 0, Blue, Green, Yellow
+  
+  @IBAction func startTapped(sender: SimonColorButton) {
+    simonState = .Leading
+  }
+  
+  var showSequence: [SimonColorButton] = []
+  func startRound (){
+    showSequence.append(buttonArray[Int(arc4random_uniform(UInt32(3 - 0 + 1)))])
+//    closeUserInput()
+    UIView.animateWithDuration(1, delay: 0, options: .Autoreverse, animations: { () -> Void in
+      self.showSequence[0].alpha = 0
+      }) { (Bool) -> Void in
+        self.showSequence[0].alpha = 1
+        self.simonState = .Following
     }
-    
-    var simonSquence:[ControlColors] = []
+  }
+  
+  func openToUserInput (){
+    redButton.enabled = true
+    greenButton.enabled = true
+    yellowButton.enabled = true
+    blueButton.enabled = true
+  }
+  
+  func closeUserInput (){
+    redButton.enabled = false
+    greenButton.enabled = false
+    yellowButton.enabled = false
+    blueButton.enabled = false
 
-    override func viewDidLoad() {
-        redButton.setupDepression()
-        blueButton.setupDepression()
-        greenButton.setupDepression()
-        yellowButton.setupDepression()
-        whiteButton.setupDepression()
+  }
+  
+  func advanceToNextLevel (){
+    println("level advanced")
+//    closeUserInput()
+    showSequence.append(buttonArray[Int(arc4random_uniform(UInt32(3 - 0 + 1)))])
+    self.animateUntilEndOfShowSequence()
+    animationCounter = 0
+  }
+  
+  var animationCounter: Int = 0
+  func animateUntilEndOfShowSequence() {
+    let animatingButton = showSequence[self.animationCounter]
+    UIView.animateWithDuration( 1, delay: 0, options: .Autoreverse,
+      animations: { () -> Void in
+        animatingButton.alpha = 0
+      }) { (Bool) -> Void in
+        animatingButton.alpha = 1
+        self.animationCounter++
+        self.animateNextIfNotLast()
     }
     
-    @IBAction func controlsTapped(sender: SimonColorButton) {
-        //set alpha to all the controls
-        redButton.alpha = 1
-        blueButton.alpha = 1
-        greenButton.alpha = 1
-        yellowButton.alpha = 1
-        whiteButton.alpha = 0.5
-        
-        //TODO: when users done entering controls, trigger either leading or ready
-   
-        //if sender is identidcal to red button  then it is redd button
-        if sender === redButton {
-            simonState = .Leading}
-        //if user enter correct controls
-        //then, continus to leading
-        //if user enter wrong controls
-        //then continue to ready
-        
-    }
-    func monitorControls(){
-     //validate user input. get human input sequence as input and compare it with simon sequence
-    }
+  }
 
-    @IBAction func startTapped(sender: SimonColorButton) {
-        simonState = .Leading
-        
+  func animateNextIfNotLast() {
+    if self.animationCounter == self.showSequence.count{ //end of showSequence
+      self.simonState = .Following
+    } else {
+      self.animateUntilEndOfShowSequence()
     }
-    
-    func startRound (){
-        whiteButton.enabled = false
-        //TODO: one button flash
-        
-        //set alpha to all the controls
-        redButton.alpha = 0.5
-        blueButton.alpha = 0.5
-        greenButton.alpha = 0.5
-        yellowButton.alpha = 0.5
-        whiteButton.alpha = 0.5
-        
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.Autoreverse, animations: { () -> Void in
-            self.redButton.alpha = 1
-        }) { (Bool) -> Void in
-           self.simonState = .Following
-        }
-    }
-    
-    func openToUserInput (){
-        redButton.enabled = true
-        blueButton.enabled = true
-        greenButton.enabled = true
-        yellowButton.enabled = true
-    }
-    
-    
-    func advanceToNextLevel (){
-        //TODO: flash some buttons. update the Level label, 
-        
-        //generate new simon sequence
-        simonSquence = [.Red, .Blue, .Yellow, .Green]
-    }
-    
-    func gameRestarts (){
-        //TODO: ends the game, show that user failed.
-    }
-    
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
-        super.animationDidStop(anim, finished: flag)
-        //TODO: when buttons done flashing, trigger to enable color controls
-    }
-    
+  }
+  
+  func gameRestarts (){
+    println("game over")
+    gameOver.text = "GAME OVER"
+  }
+  
+  func addButtonsToTheButtonArray (){
+    buttonArray = [redButton, greenButton, yellowButton, blueButton]
+  }
 }
-
